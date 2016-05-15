@@ -356,7 +356,7 @@ public final class ExpressionDataRow extends ExpressionEventHelper {
     runtime.setState( reportState.createGroupingState() );
     runtime.setCrosstabInfo( reportState.isStructuralPreprocessingNeeded(), reportState.isCrosstabActive() );
     super.fireReportEvent( event );
-    super.reactivateExpressions( event.isDeepTraversing() );
+    // super.reactivateExpressions( event.isDeepTraversing() );
   }
 
   protected void updateMasterDataRow( final String name, final Object value ) {
@@ -427,7 +427,7 @@ public final class ExpressionDataRow extends ExpressionEventHelper {
   }
 
   public void refresh() {
-    reactivateExpressions( false );
+    // reactivateExpressions( false );
   }
 
   protected int getRunLevelCount() {

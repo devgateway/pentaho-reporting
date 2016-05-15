@@ -32,6 +32,8 @@ public abstract class ExpressionEventHelper {
 
   private static final Log logger = LogFactory.getLog( ExpressionEventHelper.class );
 
+    private static final Boolean REFRESH_EXPRESSION = Boolean.valueOf(System.getProperty("refresh.expression"));
+
   protected void fireReportEvent( final ReportEvent event ) {
     if ( ( event.getType() & ReportEvent.PAGE_STARTED ) == ReportEvent.PAGE_STARTED ) {
       firePageStartedEvent( event );
@@ -102,7 +104,9 @@ public abstract class ExpressionEventHelper {
             final Function e = (Function) expression;
             e.itemsAdvanced( event );
           }
-          evaluateSingleExpression( expression );
+            if(REFRESH_EXPRESSION) {
+                evaluateSingleExpression( expression );
+            }
         } catch ( final InvalidReportStateException rse ) {
           throw rse;
         } catch ( final Exception ex ) {
@@ -146,7 +150,9 @@ public abstract class ExpressionEventHelper {
             final Function e = (Function) expression;
             e.itemsStarted( event );
           }
-          evaluateSingleExpression( expression );
+            if(REFRESH_EXPRESSION) {
+                evaluateSingleExpression( expression );
+            }
         } catch ( final InvalidReportStateException rse ) {
           throw rse;
         } catch ( final Exception ex ) {
@@ -191,7 +197,9 @@ public abstract class ExpressionEventHelper {
             final Function e = (Function) expression;
             e.itemsFinished( event );
           }
-          evaluateSingleExpression( expression );
+            if(REFRESH_EXPRESSION) {
+                evaluateSingleExpression( expression );
+            }
         } catch ( final InvalidReportStateException rse ) {
           throw rse;
         } catch ( final Exception ex ) {
@@ -279,7 +287,7 @@ public abstract class ExpressionEventHelper {
             final Function e = (Function) expression;
             e.groupFinished( event );
           }
-          evaluateSingleExpression( expression );
+            evaluateSingleExpression( expression );
         } catch ( final InvalidReportStateException rse ) {
           throw rse;
         } catch ( final Exception ex ) {
@@ -323,7 +331,9 @@ public abstract class ExpressionEventHelper {
             final Function e = (Function) expression;
             e.summaryRowSelection( event );
           }
-          evaluateSingleExpression( expression );
+            if(REFRESH_EXPRESSION) {
+                evaluateSingleExpression( expression );
+            }
         } catch ( final InvalidReportStateException rse ) {
           throw rse;
         } catch ( final Exception ex ) {
@@ -411,7 +421,9 @@ public abstract class ExpressionEventHelper {
             final Function e = (Function) expression;
             e.reportDone( event );
           }
-          evaluateSingleExpression( expression );
+            if(REFRESH_EXPRESSION) {
+                evaluateSingleExpression( expression );
+            }
         } catch ( final InvalidReportStateException rse ) {
           throw rse;
         } catch ( final Exception ex ) {
@@ -455,7 +467,9 @@ public abstract class ExpressionEventHelper {
             final Function e = (Function) expression;
             e.reportFinished( event );
           }
-          evaluateSingleExpression( expression );
+            if(REFRESH_EXPRESSION) {
+                evaluateSingleExpression( expression );
+            }
         } catch ( final InvalidReportStateException rse ) {
           throw rse;
         } catch ( final Exception ex ) {
@@ -543,7 +557,9 @@ public abstract class ExpressionEventHelper {
             final PageEventListener e = (PageEventListener) expression;
             e.pageStarted( event );
           }
-          evaluateSingleExpression( expression );
+            if(REFRESH_EXPRESSION) {
+                evaluateSingleExpression( expression );
+            }
         } catch ( final InvalidReportStateException rse ) {
           throw rse;
         } catch ( final Exception ex ) {
@@ -587,7 +603,9 @@ public abstract class ExpressionEventHelper {
             final PageEventListener e = (PageEventListener) expression;
             e.pageFinished( event );
           }
-          evaluateSingleExpression( expression );
+            if(REFRESH_EXPRESSION) {
+                evaluateSingleExpression( expression );
+            }
         } catch ( final InvalidReportStateException rse ) {
           throw rse;
         } catch ( final Exception ex ) {
@@ -625,7 +643,9 @@ public abstract class ExpressionEventHelper {
 
         final ExpressionRuntime oldRuntime = expression.getRuntime();
         expression.setRuntime( runtime );
-        evaluateSingleExpression( expression );
+          if(REFRESH_EXPRESSION) {
+              evaluateSingleExpression( expression );
+          }
         expression.setRuntime( oldRuntime );
       }
     }
