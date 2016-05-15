@@ -20,10 +20,9 @@ build-res/module-scripts/
 *.jar
 *.war
 *.ear
-.idea/workspace.xml
-.idea/compiler.xml
-.idea/dictionaries/
-.idea/inspectionProfiles/
 *.lck
 target
-
+*.iml
+.idea
+/.idea
+/target
