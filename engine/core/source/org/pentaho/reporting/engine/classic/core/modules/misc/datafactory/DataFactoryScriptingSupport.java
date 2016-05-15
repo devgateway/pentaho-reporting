@@ -167,6 +167,7 @@ public final class DataFactoryScriptingSupport implements Cloneable, Serializabl
   }
 
   private static class QueryScriptContext {
+    private static final String NASHORN_GLOBAL = "nashorn.global";
     private Invocable invocableEngine;
     private ScriptEngine scriptEngine;
     private ScriptContext context;
@@ -183,6 +184,10 @@ public final class DataFactoryScriptingSupport implements Cloneable, Serializabl
 
       if ( globalContext != null ) {
         final Bindings bindings = globalContext.getBindings( ScriptContext.ENGINE_SCOPE );
+          if ( bindings.containsKey( NASHORN_GLOBAL ) ) {
+            Bindings nashornGlobal = (Bindings) bindings.get( NASHORN_GLOBAL );
+            this.context.getBindings( ScriptContext.ENGINE_SCOPE ).putAll( nashornGlobal );
+           }
         this.context.getBindings( ScriptContext.ENGINE_SCOPE ).putAll( bindings );
       } else {
         context.setAttribute( "dataFactory", dataFactory, ScriptContext.ENGINE_SCOPE );
