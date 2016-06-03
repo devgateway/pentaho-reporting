@@ -198,6 +198,9 @@ public class CachableTableModel extends AbstractTableModel implements MetaTableM
       if ( Number.class.isAssignableFrom( columnClass ) ) {
         continue;
       }
+      if ( Boolean.class.isAssignableFrom( columnClass ) ) {
+        continue;
+      }
       if ( Date.class.isAssignableFrom( columnClass ) ) {
         continue;
       }
